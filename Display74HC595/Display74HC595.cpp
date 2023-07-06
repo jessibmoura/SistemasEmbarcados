@@ -78,7 +78,7 @@ void Display74HC595::send(unsigned char X)
 
   for (int i = 8; i >= 1; i--)
   {
-    if (X & 0x80)
+    if (X & 0x80) //Confere se o primeiro dígito é 1, se for ele acende
     {
       digitalWrite(_DIO, HIGH);
     }
@@ -86,18 +86,10 @@ void Display74HC595::send(unsigned char X)
     {
       digitalWrite(_DIO, LOW);
     }
-    X <<= 1;
+    X <<= 1; //faz um shift para conferir o próximo dígito
     digitalWrite(_SCLK, LOW);
     digitalWrite(_SCLK, HIGH);  
   }
-}
-
-void Display74HC595::send(unsigned char X, unsigned char port)
-{
-  send(X);
-  send(port);
-  digitalWrite(_RCLK, LOW);
-  digitalWrite(_RCLK, HIGH);
 }
 
 void Display74HC595::digit(unsigned char valor, int display){ //coloca o valor para exibir no display escolhido (opção entre 0 e 4)
