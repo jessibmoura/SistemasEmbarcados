@@ -11,8 +11,7 @@ class Display74HC595
   public:
     Display74HC595(int SCLK, int RCLK, int DIO);
 	void timerIsr();
-    void send(unsigned char X);
-	void send(unsigned char X, unsigned char port);
+        void send(unsigned char X);
 	void digit(unsigned char valor, int display);
 	void clear_all();
 	void clear(int display);
